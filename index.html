@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Redirecting...</title>
+  <script>
+    function isIOS() {
+      return /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+             (navigator.userAgent.includes("Macintosh") && 'ontouchend' in document);
+    }
+
+    window.onload = function() {
+      var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+      if (/android/i.test(userAgent)) {
+        window.location.href = "https://play.google.com/store/apps/details?id=com.married.marriedapp";
+      } else if (isIOS()) {
+        window.location.href = "https://apps.apple.com/us/app/%D9%85%D8%B9%D8%B1%D8%B6/id6744809295";
+      } else {
+        window.location.href = "https://maerid.com/";
+      }
+    };
+  </script>
+</head>
+<body>
+  <p>Redirecting to the driver app store page...</p>
+</body>
+</html>
