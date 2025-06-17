@@ -5,218 +5,254 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Review Slider</title>
   <style>
-.review-heading-box {
-  display: inline-block;
-  padding: 12px 20px;
-  border-radius: 16px;
-  margin: 0 auto 20px;
-  background: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-  text-align: center;
-  transform: scale(1) translateY(0);
-  opacity: 1;
-  animation: floatAnimation 3s ease-in-out infinite;
-}
+    .review-heading-box {
+      display: inline-block;
+      padding: 15px 30px;
+      border-radius: 15px;
+      margin: 0 auto 30px;
+      background: rgba(255, 223, 0, 0.9); /* হলুদ স্বচ্ছ ব্যাকগ্রাউন্ড */
+      box-shadow: 0 6px 20px rgba(255, 223, 0, 0.3); /* মৃদু হলুদ ছায়া */
+      border: 2px solid #ffe066; /* হালকা হলুদ বর্ডার */
+      text-align: center;
+      transform: scale(1) translateY(0);
+      opacity: 1;
+      animation: subtleLift 3s ease-in-out infinite;
+      transition: all 0.3s ease;
+      position: relative;
+      top: -35px;
+      z-index: 10;
+    }
 
-@keyframes floatAnimation {
-  0% { transform: scale(1) translateY(0); }
-  50% { transform: scale(1.02) translateY(-5px); }
-  100% { transform: scale(1) translateY(0); }
-}
+    .review-heading-box:hover {
+      transform: scale(1.04) translateY(-4px);
+      box-shadow: 0 8px 25px rgba(255, 223, 0, 0.4);
+    }
 
-.animated-heading {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px;
-  font-size: 22px;
-  font-weight: 900;
-  line-height: 1.4;
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  color: #ff1b6b;
-}
+    @keyframes subtleLift {
+      0%, 100% { transform: scale(1) translateY(0); }
+      50% { transform: scale(1.01) translateY(-6px); }
+    }
 
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Arial', sans-serif;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  background: linear-gradient(120deg, rgba(0,200,150,0.4), rgba(0,150,250,0.4));
-}
+    .animated-heading {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      font-size: 24px;
+      font-weight: 900;
+      line-height: 1.6;
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      color: #333333; /* গাঢ় টেক্সট, পড়তে সহজ */
+      text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.5); /* হালকা সাদা ছায়া */
+      position: relative;
+      z-index: 2;
+    }
 
-footer {
-  width: 100%;
-  padding: 10px 0;
-  background: rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(8px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-sizing: border-box;
-}
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      background-image: url('images/background.jpg');
+      background-size: cover; /* পুরো পেজে ফিট করবে */
+      background-position: center; /* কেন্দ্রে স্থির */
+      background-repeat: no-repeat; /* পুনরাবৃত্তি বন্ধ */
+      background-color: #f0f0f0; /* ফলব্যাক কালার */
+    }
 
-.review-btn {
-  text-decoration: none;
-  font-size: 18px;
-  font-weight: bold;
-  padding: 16px 32px;
-  border-radius: 50px;
-  background: linear-gradient(45deg, #00c851, #007e33);
-  color: white;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
-  animation: pulse 2s infinite;
-  margin-bottom: 16px;
-}
+    footer {
+      width: 100%;
+      padding: 1px 0;
+      background: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(0.1px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-sizing: border-box;
+    }
 
-.review-btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 18px rgba(0, 200, 80, 0.6);
-}
+    .review-btn {
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: bold;
+      padding: 16px 32px;
+      border-radius: 50px;
+      background: linear-gradient(45deg, #00c851, #007e33);
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+      animation: pulse 2s infinite;
+      margin-bottom: 16px;
+    }
 
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.02); }
-  100% { transform: scale(1); }
-}
+    .review-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 18px rgba(0, 200, 80, 0.6);
+    }
 
-.email-form-box {
-  display: flex;
-  justify-content: center;
-  padding: 12px 20px;
-  border-radius: 16px;
-  margin: 0 auto 16px;
-  background: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-  width: fit-content;
-  box-sizing: border-box;
-}
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+      100% { transform: scale(1); }
+    }
 
-#emailForm {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
+    .email-form-box {
+      display: flex;
+      justify-content: center;
+      padding: 12px 20px;
+      border-radius: 16px;
+      margin: 0 auto 16px;
+      background: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      width: fit-content;
+      box-sizing: border-box;
+    }
 
-#emailInput {
-  padding: 8px 12px;
-  border-radius: 8px;
-  border: none;
-  font-size: 14px;
-  font-family: 'Arial', sans-serif;
-  width: 180px;
-  background: rgba(255, 255, 255, 0.9);
-  color: #333;
-}
+    #emailForm {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
 
-#emailInput:focus {
-  outline: none;
-  box-shadow: 0 0 8px rgba(255, 100, 150, 0.5);
-}
+    #emailInput {
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: none;
+      font-size: 14px;
+      font-family: 'Arial', sans-serif;
+      width: 180px;
+      background: rgba(255, 255, 255, 0.9);
+      color: #333;
+    }
 
-#submitBtn {
-  padding: 8px 16px;
-  border-radius: 8px;
-  border: none;
-  background: linear-gradient(45deg, #ff1b6b, #ff8b6b);
-  color: white;
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
+    #emailInput:focus {
+      outline: none;
+      box-shadow: 0 0 8px rgba(255, 100, 150, 0.5);
+    }
 
-#submitBtn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 12px rgba(255, 100, 150, 0.6);
-}
+    #submitBtn {
+      padding: 8px 16px;
+      border-radius: 8px;
+      border: none;
+      background: linear-gradient(45deg, #ff1b6b, #ff8b6b);
+      color: white;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
 
-#submitBtn.submitted {
-  background: linear-gradient(45deg, #00c851, #007e33);
-  font-size: 16px;
-  cursor: not-allowed;
-}
+    #submitBtn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(255, 100, 150, 0.6);
+    }
 
-.review-container {
-  overflow: hidden;
-  width: 100%;
-  max-width: 100%;
-}
+    #submitBtn.submitted {
+      background: linear-gradient(45deg, #00c851, #007e33);
+      font-size: 16px;
+      cursor: not-allowed;
+    }
 
-.review-track {
-  display: flex;
-  width: max-content;
-  animation: scroll 40s linear infinite;
-}
+    .review-container {
+      overflow: hidden;
+      width: 100%;
+      max-width: 100%;
+    }
 
-@keyframes scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
+    .review-track {
+      display: flex;
+      width: max-content;
+      animation: scroll 40s linear infinite;
+    }
 
-.review-card {
-  flex: 0 0 auto;
-  width: 220px;
-  margin: 8px;
-  background: white;
-  border-radius: 12px;
-  padding: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
-}
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
 
-.review-card img {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 8px;
-}
+    .review-card {
+      flex: 0 0 auto;
+      width: 220px;
+      margin: 8px;
+      background: white;
+      border-radius: 12px;
+      padding: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
 
-.stars {
-  color: #FFD700;
-  font-size: 20px;
-  margin: 4px 0;
-}
+    .review-card img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 8px;
+    }
 
-.review-text {
-  font-size: 12px;
-  color: #333;
-}
+    .stars {
+      color: #FFD700;
+      font-size: 20px;
+      margin: 4px 0;
+    }
 
-.copyright-box {
-  width: 100%;
-  background: #1a1a1a;
-  padding: 8px 0;
-  text-align: center;
-  color: #ffffff;
-  font-size: 14px;
-  font-family: 'Arial', sans-serif;
-  font-weight: 400;
-  box-sizing: border-box;
-}
+    .review-text {
+      font-size: 12px;
+      color: #333;
+    }
 
-@media (max-width: 600px) {
-  .review-card { width: 160px; }
-  .review-btn { font-size: 16px; padding: 12px 24px; }
-  .stars { font-size: 18px; }
-  .review-text { font-size: 11px; }
-  .animated-heading { font-size: 18px; gap: 6px; }
-  .review-heading-box { padding: 10px 16px; margin-bottom: 16px; }
-  .email-form-box { padding: 10px 16px; margin-bottom: 12px; }
-  #emailInput { width: 140px; font-size: 12px; padding: 6px 10px; }
-  #submitBtn { font-size: 12px; padding: 6px 12px; }
-  .copyright-box { font-size: 12px; padding: 6px 0; }
-  body, footer { overflow-x: hidden; }
-  .review-container { max-width: 100vw; }
-}
+    .copyright-box {
+      width: 100%;
+      background: #1a1a1a;
+      padding: 8px 0;
+      text-align: center;
+      color: #ffffff;
+      font-size: 14px;
+      font-family: 'Arial', sans-serif;
+      font-weight: 400;
+      box-sizing: border-box;
+    }
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@900&display=swap');
+    @media (max-width: 600px) {
+      .review-heading-box {
+        padding: 12px 20px;
+        top: -25px;
+        margin: 0 auto 20px;
+        border-radius: 12px;
+      }
+      .animated-heading {
+        font-size: 18px;
+        gap: 6px;
+      }
+      footer {
+        padding-top: 30px;
+      }
+      .review-btn {
+        margin-bottom: 20px;
+      }
+      .email-form-box {
+        margin-bottom: 10px;
+      }
+      body, footer {
+        overflow-x: hidden;
+      }
+      .review-container {
+        max-width: 100vw;
+      }
+      .review-card { width: 160px; }
+      .review-btn { font-size: 16px; padding: 18px 90px; }
+      .stars { font-size: 20px; }
+      .review-text { font-size: 14px; }
+      #emailInput { width: 240px; font-size: 18px; padding: 6px 10px; }
+      #submitBtn { font-size: 13px; padding: 7px 15px; }
+      .copyright-box { font-size: 14px; padding: 8px 0; }
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@900&display=swap');
   </style>
 </head>
 <body>
@@ -228,13 +264,13 @@ footer {
     </div>
 
     <a href="https://search.google.com/local/writereview?placeid=ChIJMwSpP0-apBIRmfgCVtMqzDU" class="review-btn" target="_blank">
-      Review Us
+      Tu reseña cuenta
     </a>
 
     <div class="email-form-box">
       <form id="emailForm">
-        <input type="email" id="emailInput" placeholder="আপনার ইমেল দিন" required>
-        <button type="submit" id="submitBtn">Submit</button>
+        <input type="email" id="emailInput" placeholder=" 🎁Recibe ofertas exclusivas" required>
+        <button type="submit" id="submitBtn">Enviar</button>
       </form>
     </div>
 
@@ -244,19 +280,19 @@ footer {
           <img src="https://randomuser.me/api/portraits/women/1.jpg" alt="Cliente">
           <h4>Carmen Ruiz</h4>
           <div class="stars">★★★★★</div>
-          <div class="review-text">El servicio fue excelente y la comida deliciosা。</div>
+          <div class="review-text">El servicio fue excelente y la comida delicios 🥳🥳</div>
         </div>
         <div class="review-card">
           <img src="https://randomuser.me/api/portraits/men/2.jpg" alt="Cliente">
           <h4>José Martínez</h4>
           <div class="stars">★★★★★</div>
-          <div class="review-text">Un lugar acogedor con atención de primera。</div>
+          <div class="review-text">Un lugar acogedor con atención de primera🤗🍽️</div>
         </div>
         <div class="review-card">
           <img src="https://randomuser.me/api/portraits/women/3.jpg" alt="Cliente">
           <h4>Lucía Gómez</h4>
           <div class="stars">★★★★★</div>
-          <div class="review-text">Me encantó todo, volveré pronto。</div>
+          <div class="review-text">Me encantó todo, volveré pronto. 😍</div>
         </div>
         <div class="review-card">
           <img src="https://randomuser.me/api/portraits/men/4.jpg" alt="Cliente">
@@ -268,7 +304,7 @@ footer {
           <img src="https://randomuser.me/api/portraits/women/5.jpg" alt="Cliente">
           <h4>Isabel Fernández</h4>
           <div class="stars">★★★★★</div>
-          <div class="review-text">Muy buena experiencia. Recomiendo a todos。</div>
+          <div class="review-text">Muy buena experiencia. Recomiendo a todos😊✅</div>
         </div>
         <div class="review-card">
           <img src="https://randomuser.me/api/portraits/men/6.jpg" alt="Cliente">
@@ -280,7 +316,7 @@ footer {
           <img src="https://randomuser.me/api/portraits/women/7.jpg" alt="Cliente">
           <h4>Sofía Jiménez</h4>
           <div class="stars">★★★★★</div>
-          <div class="review-text">Perfecto para cenas familiares o con amigos。</div>
+          <div class="review-text">Perfecto para cenas familiares o con amigos👨‍👩‍👧‍👦</div>
         </div>
         <div class="review-card">
           <img src="https://randomuser.me/api/portraits/men/8.jpg" alt="Cliente">
@@ -292,19 +328,19 @@ footer {
           <img src="https://randomuser.me/api/portraits/women/1.jpg" alt="Cliente">
           <h4>Carmen Ruiz</h4>
           <div class="stars">★★★★★</div>
-          <div class="review-text">El servicio fue excelente y la comida deliciosা。</div>
+          <div class="review-text">El servicio fue excelente y la comida delicios💕</div>
         </div>
         <div class="review-card">
           <img src="https://randomuser.me/api/portraits/men/2.jpg" alt="Cliente">
           <h4>José Martínez</h4>
           <div class="stars">★★★★★</div>
-          <div class="review-text">Un lugar acogedor con atención de primera。</div>
+          <div class="review-text">Un lugar acogedor con atención de primera</div>
         </div>
         <div class="review-card">
           <img src="https://randomuser.me/api/portraits/women/3.jpg" alt="Cliente">
           <h4>Lucía Gómez</h4>
           <div class="stars">★★★★★</div>
-          <div class="review-text">Me encantó todo, volveré pronto。</div>
+          <div class="review-text">Me encantó todo, volveré pronto👍</div>
         </div>
         <div class="review-card">
           <img src="https://randomuser.me/api/portraits/men/4.jpg" alt="Cliente">
@@ -349,7 +385,7 @@ footer {
       // Email validation
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(email)) {
-        alert('দয়া করে একটি বৈধ ইমেল দিন।');
+        alert('Por favor, introduzca un correo electrónico válido.');
         return;
       }
 
