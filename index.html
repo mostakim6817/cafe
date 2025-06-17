@@ -19,18 +19,9 @@
 }
 
 @keyframes growBox {
-  0% {
-    transform: scale(0.7);
-    opacity: 0;
-  }
-  50% {
-    transform: scale(0.9);
-    opacity: 0.6;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
+  0% { transform: scale(0.7); opacity: 0; }
+  50% { transform: scale(0.9); opacity: 0.6; }
+  100% { transform: scale(1); opacity: 1; }
 }
 
 .animated-heading {
@@ -66,22 +57,13 @@
 .animated-heading span:nth-child(7) { animation-delay: 2.1s; }
 .animated-heading span:nth-child(8) { animation-delay: 2.25s; }
 .animated-heading span:nth-child(9) { animation-delay: 2.4s; }
-.animated-heading span:nth-child(10){ animation-delay: 2.55s; }
-.animated-heading span:nth-child(11){ animation-delay: 2.7s; }
+.animated-heading span:nth-child(10) { animation-delay: 2.55s; }
+.animated-heading span:nth-child(11) { animation-delay: 2.7s; }
 
 @keyframes smoothWord {
-  0% {
-    opacity: 0;
-    transform: scale(0.8) translateY(12px);
-  }
-  50% {
-    opacity: 0.8;
-    transform: scale(1.05) translateY(-4px);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
+  0% { opacity: 0; transform: scale(0.8) translateY(12px); }
+  50% { opacity: 0.8; transform: scale(1.05) translateY(-4px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
 }
 
 body {
@@ -108,9 +90,9 @@ footer {
 
 .review-btn {
   text-decoration: none;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
-  padding: 12px 24px;
+  padding: 16px 32px;
   border-radius: 50px;
   background: linear-gradient(45deg, #00c851, #007e33);
   color: white;
@@ -186,6 +168,7 @@ footer {
 #submitBtn.submitted {
   background: linear-gradient(45deg, #00c851, #007e33);
   font-size: 16px;
+  cursor: not-allowed;
 }
 
 .review-container {
@@ -248,61 +231,18 @@ footer {
 }
 
 @media (max-width: 600px) {
-  .review-card {
-    width: 160px;
-  }
-
-  .review-btn {
-    font-size: 14px;
-    padding: 8px 20px;
-  }
-
-  .stars {
-    font-size: 18px;
-  }
-
-  .review-text {
-    font-size: 11px;
-  }
-
-  .animated-heading {
-    font-size: 18px;
-    gap: 6px;
-  }
-
-  .review-heading-box {
-    padding: 10px 16px;
-    margin-bottom: 16px;
-  }
-
-  .email-form-box {
-    padding: 10px 16px;
-    margin-bottom: 12px;
-  }
-
-  #emailInput {
-    width: 140px;
-    font-size: 12px;
-    padding: 6px 10px;
-  }
-
-  #submitBtn {
-    font-size: 12px;
-    padding: 6px 12px;
-  }
-
-  .copyright-box {
-    font-size: 12px;
-    padding: 6px 0;
-  }
-
-  body, footer {
-    overflow-x: hidden;
-  }
-
-  .review-container {
-    max-width: 100vw;
-  }
+  .review-card { width: 160px; }
+  .review-btn { font-size: 16px; padding: 12px 24px; }
+  .stars { font-size: 18px; }
+  .review-text { font-size: 11px; }
+  .animated-heading { font-size: 18px; gap: 6px; }
+  .review-heading-box { padding: 10px 16px; margin-bottom: 16px; }
+  .email-form-box { padding: 10px 16px; margin-bottom: 12px; }
+  #emailInput { width: 140px; font-size: 12px; padding: 6px 10px; }
+  #submitBtn { font-size: 12px; padding: 6px 12px; }
+  .copyright-box { font-size: 12px; padding: 6px 0; }
+  body, footer { overflow-x: hidden; }
+  .review-container { max-width: 100vw; }
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@900&display=swap');
@@ -327,6 +267,10 @@ footer {
       </h2>
     </div>
 
+    <a href="https://mostakim6817.github.io/cafe/" class="review-btn" target="_blank">
+      Review Us
+    </a>
+
     <div class="email-form-box">
       <form id="emailForm">
         <input type="email" id="emailInput" placeholder="আপনার ইমেল দিন" required>
@@ -334,53 +278,49 @@ footer {
       </form>
     </div>
 
-    <a href="https://mostakim6817.github.io/cafe/" class="review-btn" target="_blank">
-      Review Us
-    </a>
-
     <div class="review-container">
       <div class="review-track">
         <div class="review-card">
           <img src="https://randomuser.me/api/portraits/women/1.jpg" alt="Cliente">
           <h4>Carmen Ruiz</h4>
           <div class="stars">★★★★★</div>
-          <div class="review-text">El servicio fue excelente y la comida deliciosa.</div>
+          <div class="review-text">El servicio fue excelente y la comida deliciosা。</div>
         </div>
         <div class="review-card">
           <img src="https://randomuser.me/api/portraits/men/2.jpg" alt="Cliente">
           <h4>José Martínez</h4>
           <div class="stars">★★★★★</div>
-          <div class="review-text">Un lugar acogedor con atención de primera.</div>
+          <div class="review-text">Un lugar acogedor con atención de primera。</div>
         </div>
         <div class="review-card">
           <img src="https://randomuser.me/api/portraits/women/3.jpg" alt="Cliente">
           <h4>Lucía Gómez</h4>
           <div class="stars">★★★★★</div>
-          <div class="review-text">Me encantó todo, volveré pronto.</div>
+          <div class="review-text">Me encantó todo, volveré pronto。</div>
         </div>
         <div class="review-card">
           <img src="https://randomuser.me/api/portraits/men/4.jpg" alt="Cliente">
           <h4>Pedro Alonso</h4>
           <div class="stars">★★★★★</div>
-          <div class="review-text">Los sabores auténticos y la presentación perfecta.</div>
+          <div class="review-text">Los sabores auténticos y la presentación perfecta。</div>
         </div>
         <div class="review-card">
           <img src="https://randomuser.me/api/portraits/women/5.jpg" alt="Cliente">
           <h4>Isabel Fernández</h4>
           <div class="stars">★★★★★</div>
-          <div class="review-text">Muy buena experiencia. Recomiendo a todos.</div>
+          <div class="review-text">Muy buena experiencia. Recomiendo a todos。</div>
         </div>
         <div class="review-card">
           <img src="https://randomuser.me/api/portraits/men/6.jpg" alt="Cliente">
           <h4>Antonio Romero</h4>
           <div class="stars">★★★★★</div>
-          <div class="review-text">Calidad excelente y ambiente agradable.</div>
+          <div class="review-text">Calidad excelente y ambiente agradable。</div>
         </div>
         <div class="review-card">
           <img src="https://randomuser.me/api/portraits/women/7.jpg" alt="Cliente">
           <h4>Sofía Jiménez</h4>
           <div class="stars">★★★★★</div>
-          <div class="review-text">Perfecto para cenas familiares o con amigos.</div>
+          <div class="review-text">Perfecto para cenas familiares o con amigos。</div>
         </div>
         <div class="review-card">
           <img src="https://randomuser.me/api/portraits/men/8.jpg" alt="Cliente">
@@ -392,43 +332,43 @@ footer {
           <img src="https://randomuser.me/api/portraits/women/1.jpg" alt="Cliente">
           <h4>Carmen Ruiz</h4>
           <div class="stars">★★★★★</div>
-          <div class="review-text">El servicio fue excelente y la comida deliciosa.</div>
+          <div class="review-text">El servicio fue excelente y la comida deliciosা。</div>
         </div>
         <div class="review-card">
           <img src="https://randomuser.me/api/portraits/men/2.jpg" alt="Cliente">
           <h4>José Martínez</h4>
           <div class="stars">★★★★★</div>
-          <div class="review-text">Un lugar acogedor con atención de primera.</div>
+          <div class="review-text">Un lugar acogedor con atención de primera。</div>
         </div>
         <div class="review-card">
           <img src="https://randomuser.me/api/portraits/women/3.jpg" alt="Cliente">
           <h4>Lucía Gómez</h4>
           <div class="stars">★★★★★</div>
-          <div class="review-text">Me encantó todo, volveré pronto.</div>
+          <div class="review-text">Me encantó todo, volveré pronto。</div>
         </div>
         <div class="review-card">
           <img src="https://randomuser.me/api/portraits/men/4.jpg" alt="Cliente">
           <h4>Pedro Alonso</h4>
           <div class="stars">★★★★★</div>
-          <div class="review-text">Los sabores auténticos y la presentación perfecta.</div>
+          <div class="review-text">Los sabores auténticos y la presentación perfecta。</div>
         </div>
         <div class="review-card">
           <img src="https://randomuser.me/api/portraits/women/5.jpg" alt="Cliente">
           <h4>Isabel Fernández</h4>
           <div class="stars">★★★★★</div>
-          <div class="review-text">Muy buena experiencia. Recomiendo a todos.</div>
+          <div class="review-text">Muy buena experiencia. Recomiendo a todos。</div>
         </div>
         <div class="review-card">
           <img src="https://randomuser.me/api/portraits/men/6.jpg" alt="Cliente">
           <h4>Antonio Romero</h4>
           <div class="stars">★★★★★</div>
-          <div class="review-text">Calidad excelente y ambiente agradable.</div>
+          <div class="review-text">Calidad excelente y ambiente agradable。</div>
         </div>
         <div class="review-card">
           <img src="https://randomuser.me/api/portraits/women/7.jpg" alt="Cliente">
           <h4>Sofía Jiménez</h4>
           <div class="stars">★★★★★</div>
-          <div class="review-text">Perfecto para cenas familiares o con amigos.</div>
+          <div class="review-text">Perfecto para cenas familiares o con amigos。</div>
         </div>
         <div class="review-card">
           <img src="https://randomuser.me/api/portraits/men/8.jpg" alt="Cliente">
@@ -438,21 +378,55 @@ footer {
         </div>
       </div>
     </div>
-
-    
   </footer>
-
   <script>
-    document.getElementById('emailForm').addEventListener('submit', function(event) {
+    document.getElementById('emailForm').addEventListener('submit', async function(event) {
       event.preventDefault();
+      const emailInput = document.getElementById('emailInput');
       const submitBtn = document.getElementById('submitBtn');
+      const email = emailInput.value.trim();
+
+      // Email validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        alert('দয়া করে একটি বৈধ ইমেল দিন।');
+        return;
+      }
+
       submitBtn.textContent = '✔';
       submitBtn.classList.add('submitted');
       submitBtn.disabled = true;
+
+      try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 10000); // 10-second timeout
+
+        const response = await fetch('https://script.google.com/macros/s/AKfycbwTiHk_IKjjdPfdA8Ku4BNRa4n7UusKLrmSvG4Pzk3x45cY9wEbHydpEa5vbjd04Qp0/exec', {
+          method: 'POST',
+          body: JSON.stringify({ email: email, timestamp: new Date().toISOString() }),
+          headers: { 'Content-Type': 'application/json' },
+          mode: 'no-cors',
+          signal: controller.signal
+        });
+
+        clearTimeout(timeoutId); // Clear timeout if request succeeds
+
+        // Avoid parsing response if not needed due to no-cors mode
+        emailInput.value = '';
+        // No alert on success to avoid unnecessary popups
+      } catch (error) {
+        console.error('Error details:', error);
+        // Suppress alert for unexpected end of input
+        if (error.name !== 'AbortError') {
+          submitBtn.textContent = 'Submit';
+          submitBtn.classList.remove('submitted');
+          submitBtn.disabled = false;
+        }
+      }
     });
   </script>
   <div class="copyright-box">
-      © 2025 Café Delicia. Todos los derechos reservados.
-    </div>
+    © 2025 Café Delicia. Todos los derechos reservados.
+  </div>
 </body>
 </html>
