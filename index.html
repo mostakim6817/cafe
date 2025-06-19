@@ -1,543 +1,305 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Review Slider</title>
-  <style>
-    .review-heading-box {
-      display: inline-block;
-      padding: 15px 30px;
-      border-radius: 15px;
-      margin: 0 auto 30px;
-      background: rgba(255, 223, 0, 0.9);
-      box-shadow: 0 6px 20px rgba(255, 223, 0, 0.3);
-      border: 2px solid #ffe066;
-      text-align: center;
-      transform: scale(1) translateY(0);
-      opacity: 1;
-      animation: subtleLift 3s ease-in-out infinite;
-      transition: all 0.3s ease;
-      position: relative;
-      top: -35px;
-      z-index: 10;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background with Custom Font and Review Prompt</title>
+    <style>
+        @font-face {
+            font-family: 'GilroyExtraBold';
+            src: url('fronts/gilroy-extra-bold.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Villesta';
+            src: url('fronts/Villesta-5yrBB.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@900&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-image: url('img/background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            text-align: left;
+            padding: 10px 20px;
+            font-family: 'Villesta', Arial, sans-serif;
+            font-size: clamp(18px, 3vw, 22px);
+            z-index: 1000;
+        }
+        .content {
+            text-align: center;
+            color: rgb(255, 255, 255);
+            background: rgba(0, 0, 0, 0);
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'GilroyExtraBold', Arial, sans-serif;
+            font-size: clamp(22px, 8vw, 26px);
+            margin: auto;
+            margin-top: 60px;
+            position: relative;
+        }
+        .review-button {
+    display: block;
+    padding: 15px 30px; /* Original size retained */
+    margin: 30px auto 0;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(45deg, #c8102e, #ff6200, #ffd700, #ff6200, #c8102e); /* Vibrant gradient: deep red, fiery orange, gold */
+    background-size:350% 100%; /* Smooth gradient animation */
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: 'GilroyExtraBold', Arial, sans-serif;
+    text-decoration: none;
+    transition: background-position 0.6s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    position: relative;
+    overflow: hidden; /* Contains blade and glory effects */
+    box-shadow: 0 4px 12px rgba(200, 16, 46, 0.5), 0 0 15px rgba(255, 98, 0, 0.3); /* Initial shadow with subtle glow */
+    animation: gloryPulse 2s ease-in-out infinite; /* Glory effect: pulsating glow */
+}
+
+/* Glory Effect: Pulsating halo */
+@keyframes gloryPulse {
+    0% {
+        box-shadow: 0 4px 12px rgba(200, 16, 46, 0.5), 0 0 15px rgba(255, 98, 0, 0.3);
     }
-
-    .review-heading-box:hover {
-      transform: scale(1.04) translateY(-4px);
-      box-shadow: 0 8px 25px rgba(255, 223, 0, 0.4);
+    50% {
+        box-shadow: 0 6px 18px rgba(200, 16, 46, 0.7), 0 0 25px rgba(255, 98, 0, 0.5), 0 0 40px rgba(255, 215, 0, 0.3); /* Radiant gold glow */
     }
-
-    @keyframes subtleLift {
-      0%, 100% { transform: scale(1) translateY(0); }
-      50% { transform: scale(1.01) translateY(-6px); }
+    100% {
+        box-shadow: 0 4px 12px rgba(200, 16, 46, 0.5), 0 0 15px rgba(255, 98, 0, 0.3);
     }
+}
 
-    .animated-heading {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      font-size: 24px;
-      font-weight: 900;
-      line-height: 1.6;
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      color: #333333;
-      text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.5);
-      position: relative;
-      z-index: 2;
-    }
+.review-button:hover {
+    background-position: 100% 0; /* Gradient slides */
+    transform: translateY(-3px); /* Subtle lift */
+    box-shadow: 0 8px 20px rgba(200, 16, 46, 0.8), 0 0 30px rgba(255, 98, 0, 0.6), 0 0 50px rgba(255, 215, 0, 0.4); /* Enhanced glory glow */
+    animation: none; /* Pause pulse on hover for stronger glow */
+}
 
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Arial', sans-serif;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      background-image: url('images/background.jpg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-color: #f0f0f0;
-    }
+.review-button:active {
+    transform: translateY(0); /* Press-down effect */
+    box-shadow: 0 3px 8px rgba(200, 16, 46, 0.4); /* Reduced shadow */
+    animation: none; /* No pulse when pressed */
+}
 
-    footer {
-      width: 100%;
-      padding: 1px 0;
-      background: rgba(255, 255, 255, 0.4);
-      backdrop-filter: blur(0.1px);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      box-sizing: border-box;
-    }
+.review-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 98, 0, 0.4), 0 8px 20px rgba(200, 16, 46, 0.8), 0 0 30px rgba(255, 215, 0, 0.4); /* Accessible focus with glory glow */
+}
 
-    @keyframes sharpBladeEffect {
-      0% {
-        transform: translateX(-100%) skewX(-30deg);
-        opacity: 0;
-      }
-      50% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateX(100%) skewX(-30deg);
-        opacity: 0;
-      }
-    }
+/* Enhanced Blade Animation */
+.review-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 30%; /* Narrower for sharper blade */
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.8),
+        rgba(255, 255, 255, 0.3),
+        transparent
+    ); /* Brighter, metallic gleam */
+    transform: skewX(-15deg); /* Tighter slant for blade-like sharpness */
+    transition: left 0.4s ease-out; /* Faster animation */
+    pointer-events: none;
+}
 
-    .review-btn {
-      text-decoration: none;
-      font-size: 24px;
-      font-weight: bold;
-      padding: 18px 36px;
-      border-radius: 50px;
-      background: linear-gradient(45deg, #00c851, #007e33);
-      color: white;
-      cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-      transition: all 0.3s ease;
-      animation: pulse 2s infinite;
-      margin-bottom: 16px;
-      position: relative;
-      overflow: hidden;
-    }
+.review-button:hover::before {
+    left: 125%; /* Blade slices across quickly */
+    transition: left 0.4s ease-out, opacity 0.4s ease-out;
+}
 
-    .review-btn::before,
-    .review-btn::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 50%;
-      height: 100%;
-      background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0));
-      animation: sharpBladeEffect 2.5s linear infinite;
-      z-index: 1;
-    }
+/* Second blade for extra flair */
+.review-button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 20%; /* Even narrower for secondary gleam */
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 215, 0, 0.6), /* Gold-tinted blade */
+        transparent
+    );
+    transform: skewX(-15deg);
+    transition: left 0.4s ease-out 0.1s; /* Slight delay for staggered effect */
+    pointer-events: none;
+}
 
-    .review-btn::after {
-      animation-delay: 0.6s;
-      top: 15%;
-    }
-
-    .review-btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 6px 18px rgba(0, 200, 80, 0.6);
-    }
-
-    @media (max-width: 600px) {
-      .review-btn {
-        font-size: 20px;
-        padding: 20px 90px;
-        animation: pulse 2s infinite;
-      }
-
-      .review-btn::before,
-      .review-btn::after {
-        width: 50%;
-        animation: sharpBladeEffect 2.5s linear infinite;
-      }
-
-      .review-btn::after {
-        animation-delay: 0.6s;
-        top: 15%;
-      }
-    }
-
-    .email-form-box {
-      display: flex;
-      justify-content: center;
-      padding: 12px 20px;
-      border-radius: 16px;
-      margin: 0 auto 16px;
-      background: rgba(255, 255, 255, 0.15);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-      width: fit-content;
-      box-sizing: border-box;
-    }
-
-    #emailForm {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
-
-    #emailInput {
-      padding: 8px 12px;
-      border-radius: 8px;
-      border: none;
-      font-size: 14px;
-      font-family: 'Arial', sans-serif;
-      width: 180px;
-      background: rgba(255, 255, 255, 0.9);
-      color: #333;
-    }
-
-    #emailInput:focus {
-      outline: none;
-      box-shadow: 0 0 8px rgba(255, 100, 150, 0.5);
-    }
-
-    #submitBtn {
-      padding: 8px 16px;
-      border-radius: 8px;
-      border: none;
-      background: linear-gradient(45deg, #ff1b6b, #ff8b6b);
-      color: white;
-      font-size: 14px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    #submitBtn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 4px 12px rgba(255, 100, 150, 0.6);
-    }
-
-    #submitBtn.submitted {
-      background: linear-gradient(45deg, #00c851, #007e33);
-      font-size: 16px;
-      cursor: not-allowed;
-    }
-
-    .review-container {
-      overflow: hidden;
-      width: 100%;
-      max-width: 100%;
-    }
-
-    .review-track {
-      display: flex;
-      width: max-content;
-      animation: scroll 40s linear infinite;
-    }
-
-    @keyframes scroll {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
-    .review-card {
-      flex: 0 0 auto;
-      width: 220px;
-      margin: 8px;
-      background: white;
-      border-radius: 12px;
-      padding: 12px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      text-align: center;
-    }
-
-    .review-card img {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 8px;
-    }
-
-    .stars {
-      color: #FFD700;
-      font-size: 20px;
-      margin: 4px 0;
-    }
-
-    .review-text {
-      font-size: 12px;
-      color: #333;
-    }
-
-    .copyright-box {
-      width: 100%;
-      background: #1a1a1a;
-      padding: 8px 0;
-      text-align: center;
-      color: #ffffff;
-      font-size: 14px;
-      font-family: 'Arial', sans-serif;
-      font-weight: 400;
-      box-sizing: border-box;
-    }
-
-    @media (max-width: 600px) {
-      .review-heading-box {
-        padding: 12px 20px;
-        top: -25px;
-        margin: 0 auto 20px;
-        border-radius: 12px;
-      }
-      .animated-heading {
-        font-size: 18px;
-        gap: 6px;
-      }
-      footer {
-        padding-top: 30px;
-      }
-      .review-btn {
-        margin-bottom: 20px;
-      }
-      .email-form-box {
-        margin-bottom: 10px;
-      }
-      body, footer {
-        overflow-x: hidden;
-      }
-      .review-container {
-        max-width: 100vw;
-      }
-      .review-card { width: 160px; }
-      .review-btn { font-size: 16px; padding: 18px 90px; }
-      .stars { font-size: 20px; }
-      .review-text { font-size: 14px; }
-      #emailInput { width: 240px; font-size: 18px; padding: 6px 10px; }
-      #submitBtn { font-size: 13px; padding: 7px 15px; }
-      .copyright-box { font-size: 14px; padding: 8px 0; }
-    }
-
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@900&display=swap');
-
-    .new-newsletter-box {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      background: linear-gradient(135deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3));
-      border-radius: 15px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-      margin: 0 auto 20px;
-      max-width: 600px;
-      text-align: center;
-    }
-
-    .new-newsletter-box h2 {
-      color: #fff;
-      font-size: 24px;
-      margin: 0 0 10px;
-      font-family: 'Poppins', sans-serif;
-    }
-
-    .new-newsletter-box p {
-      color: #ddd;
-      font-size: 14px;
-      margin: 0 0 15px;
-    }
-
-    .new-email-form {
-      display: flex;
-      gap: 10px;
-    }
-
-    .new-email-input {
-      padding: 10px 15px;
-      border: none;
-      border-radius: 25px;
-      font-size: 14px;
-      width: 200px;
-      background: rgba(255, 255, 255, 0.9);
-      color: #333;
-    }
-
-    .new-email-input:focus {
-      outline: none;
-      box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
-    }
-
-    .new-submit-btn {
-      padding: 10px 20px;
-      border: none;
-      border-radius: 25px;
-      background: linear-gradient(45deg, #ff4d4d, #ff8c1a);
-      color: #fff;
-      font-size: 14px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .new-submit-btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 4px 12px rgba(255, 77, 77, 0.6);
-    }
-
-    .new-submit-btn.submitted {
-      background: linear-gradient(45deg, #00c851, #007e33);
-      cursor: not-allowed;
-    }
-  </style>
+.review-button:hover::after {
+    left: 125%;
+    transition: left 0.4s ease-out 0.1s, opacity 0.4s ease-out;
+}
+        footer {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-family: 'GilroyExtraBold', Arial, sans-serif;
+            font-size: clamp(12px, 2.5vw, 14px);
+            width: 100%;
+        }
+        @media (max-width: 768px) {
+            .content {
+                margin: 10px;
+                padding: 15px;
+                margin-top: 50px;
+            }
+            .top-bar {
+                font-size: clamp(26px, 1.5vw, 1px);
+                padding: 8px 23px;
+            }
+            .review-button {
+                padding: 15px 10px;
+                font-size: 16px;
+                margin: 20px auto 0;
+            }
+        }
+        .new-newsletter-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3));
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            margin: 0 auto;
+            margin-top: -100px;
+            max-width: 600px;
+            text-align: center;
+            font-family: 'GilroyExtraBold', 'Arial', sans-serif;
+        }
+        .new-newsletter-box p {
+            color: #ddd;
+            font-size: 14px;
+            margin: 0 0 15px;
+        }
+        .new-email-form {
+            display: flex;
+            gap: 10px;
+        }
+        .new-email-input {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 25px;
+            font-size: 14px;
+            width: 200px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            font-family: 'GilroyExtraBold', 'Arial', sans-serif;
+        }
+        .new-email-input:focus {
+            outline: none;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+        }
+        .new-submit-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            background: linear-gradient(45deg, #ff4d4d, #ff8c1a);
+            color: #fff;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'GilroyExtraBold', 'Arial', sans-serif;
+        }
+        .new-submit-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(255, 77, 77, 0.6);
+        }
+        .new-submit-btn.submitted {
+            background: linear-gradient(45deg, #00c851, #007e33);
+            cursor: not-allowed;
+        }
+    </style>
 </head>
 <body>
-  <footer>
-    <div class="review-heading-box">
-      <h2 class="animated-heading">
-        ¡Conviértete en nuestro cliente favorito del día dejando una review! 🏆
-      </h2>
+    <div class="top-bar">
+        Àrea 2 Cafeteria Restaurant
     </div>
+    <div class="content">
+       <br> <br><br><br><br>¡𝐂𝐨𝐧𝐯𝐢é𝐫𝐭𝐞𝐭𝐞 𝐞𝐧 𝐧𝐮𝐞𝐬𝐭𝐫𝐨 𝐜𝐥𝐢𝐞𝐧𝐭𝐞 𝐟𝐚𝐯𝐨𝐫𝐢𝐭𝐨 𝐝𝐞𝐥 𝐝í𝐚! 🏆
 
-    <a href="https://search.google.com/local/writereview?placeid=ChIJMwSpP0-apBIRmfgCVtMqzDU" class="review-btn" target="_blank">
-      Tu reseña cuenta
-    </a>
-
+       <a href="https://search.google.com/local/writereview?placeid=ChIJMwSpP0-apBIRmfgCVtMqzDU" class="review-button"style="font-size: 22px;">💬 Tu reseña cuenta</a>
+    </div>
     <div class="new-newsletter-box">
-      <div>
-        
-        <p style="font-size: 21px;">🎁Recibe ofertas exclusivas</p>
-        <form id="newEmailForm" class="new-email-form">
-          <input type="email" id="newEmailInput" class="new-email-input" placeholder="example@gmail.com" required>
-          <button type="submit" id="newSubmitBtn" class="new-submit-btn">Enviar</button>
-        </form>
-      </div>
+        <div>
+            <p style="font-size: 16px;">¿𝗧𝗲 𝗴𝘂𝘀𝘁𝗮𝗻 𝗹𝗼𝘀 𝗿𝗲𝗴𝗮𝗹𝗼𝘀? 𝗗é𝗷𝗮𝗻𝗼𝘀 𝘁𝘂 𝗲𝗺𝗮𝗶𝗹. 🎁
+</p>
+            <form id="newEmailForm" class="new-email-form">
+                <input type="email" id="newEmailInput" class="new-email-input" placeholder="example@gmail.com" required>
+                <button type="submit" id="newSubmitBtn" class="new-submit-btn">Enviar</button>
+            </form>
+        </div>
     </div>
-
-    <div class="review-container">
-      <div class="review-track">
-        <div class="review-card">
-          <img src="https://randomuser.me/api/portraits/women/1.jpg" alt="Cliente">
-          <h4>Carmen Ruiz</h4>
-          <div class="stars">★★★★★</div>
-          <div class="review-text">El servicio fue excelente y la comida delicios 🥳🥳</div>
-        </div>
-        <div class="review-card">
-          <img src="https://randomuser.me/api/portraits/men/2.jpg" alt="Cliente">
-          <h4>José Martínez</h4>
-          <div class="stars">★★★★★</div>
-          <div class="review-text">Un lugar acogedor con atención de primera🤗🍽️</div>
-        </div>
-        <div class="review-card">
-          <img src="https://randomuser.me/api/portraits/women/3.jpg" alt="Cliente">
-          <h4>Lucía Gómez</h4>
-          <div class="stars">★★★★★</div>
-          <div class="review-text">Me encantó todo, volveré pronto. 😍</div>
-        </div>
-        <div class="review-card">
-          <img src="https://randomuser.me/api/portraits/men/4.jpg" alt="Cliente">
-          <h4>Pedro Alonso</h4>
-          <div class="stars">★★★★★</div>
-          <div class="review-text">Los sabores auténticos y la presentación perfecta。</div>
-        </div>
-        <div class="review-card">
-          <img src="https://randomuser.me/api/portraits/women/5.jpg" alt="Cliente">
-          <h4>Isabel Fernández</h4>
-          <div class="stars">★★★★★</div>
-          <div class="review-text">Muy buena experiencia. Recomiendo a todos😊✅</div>
-        </div>
-        <div class="review-card">
-          <img src="https://randomuser.me/api/portraits/men/6.jpg" alt="Cliente">
-          <h4>Antonio Romero</h4>
-          <div class="stars">★★★★★</div>
-          <div class="review-text">Calidad excelente y ambiente agradable。</div>
-        </div>
-        <div class="review-card">
-          <img src="https://randomuser.me/api/portraits/women/7.jpg" alt="Cliente">
-          <h4>Sofía Jiménez</h4>
-          <div class="stars">★★★★★</div>
-          <div class="review-text">Perfecto para cenas familiares o con amigos👨‍👩‍👧‍👦</div>
-        </div>
-        <div class="review-card">
-          <img src="https://randomuser.me/api/portraits/men/8.jpg" alt="Cliente">
-          <h4>Diego López</h4>
-          <div class="stars">★★★★★</div>
-          <div class="review-text">Simplemente espectacular. ¡Volveré seguro!</div>
-        </div>
-        <div class="review-card">
-          <img src="https://randomuser.me/api/portraits/women/1.jpg" alt="Cliente">
-          <h4>Carmen Ruiz</h4>
-          <div class="stars">★★★★★</div>
-          <div class="review-text">El servicio fue excelente y la comida delicios💕</div>
-        </div>
-        <div class="review-card">
-          <img src="https://randomuser.me/api/portraits/men/2.jpg" alt="Cliente">
-          <h4>José Martínez</h4>
-          <div class="stars">★★★★★</div>
-          <div class="review-text">Un lugar acogedor con atención de primera</div>
-        </div>
-        <div class="review-card">
-          <img src="https://randomuser.me/api/portraits/women/3.jpg" alt="Cliente">
-          <h4>Lucía Gómez</h4>
-          <div class="stars">★★★★★</div>
-          <div class="review-text">Me encantó todo, volveré pronto👍</div>
-        </div>
-        <div class="review-card">
-          <img src="https://randomuser.me/api/portraits/men/4.jpg" alt="Cliente">
-          <h4>Pedro Alonso</h4>
-          <div class="stars">★★★★★</div>
-          <div class="review-text">Los sabores auténticos y la presentación perfecta。</div>
-        </div>
-        <div class="review-card">
-          <img src="https://randomuser.me/api/portraits/women/5.jpg" alt="Cliente">
-          <h4>Isabel Fernández</h4>
-          <div class="stars">★★★★★</div>
-          <div class="review-text">Muy buena experiencia. Recomiendo a todos。</div>
-        </div>
-        <div class="review-card">
-          <img src="https://randomuser.me/api/portraits/men/6.jpg" alt="Cliente">
-          <h4>Antonio Romero</h4>
-          <div class="stars">★★★★★</div>
-          <div class="review-text">Calidad excelente y ambiente agradable。</div>
-        </div>
-        <div class="review-card">
-          <img src="https://randomuser.me/api/portraits/women/7.jpg" alt="Cliente">
-          <h4>Sofía Jiménez</h4>
-          <div class="stars">★★★★★</div>
-          <div class="review-text">Perfecto para cenas familiares o con amigos。</div>
-        </div>
-        <div class="review-card">
-          <img src="https://randomuser.me/api/portraits/men/8.jpg" alt="Cliente">
-          <h4>Diego López</h4>
-          <div class="stars">★★★★★</div>
-          <div class="review-text">Simplemente espectacular. ¡Volveré seguro!</div>
-        </div>
-      </div>
-    </div>
-  </footer>
-  <script>
-    document.getElementById('newEmailForm').addEventListener('submit', async function(event) {
-      event.preventDefault();
-      const emailInput = document.getElementById('newEmailInput');
-      const submitBtn = document.getElementById('newSubmitBtn');
-      const email = emailInput.value.trim();
-
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(email)) {
-        alert('Por favor, introduzca un correo electrónico válido.');
-        return;
-      }
-
-      submitBtn.textContent = '✔';
-      submitBtn.classList.add('submitted');
-      submitBtn.disabled = true;
-
-      try {
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 10000);
-
-        const response = await fetch('https://script.google.com/macros/s/AKfycbz_t3KHVcenQbZyg-kxG9QpftJ_CdumhV__AivyqLx9UYA4fUcVriov8lPynF3FHm1z/exec', {
-          method: 'POST',
-          body: JSON.stringify({ email: email, timestamp: new Date().toISOString() }),
-          headers: { 'Content-Type': 'application/json' },
-          mode: 'no-cors',
-          signal: controller.signal
+    <footer>
+        © 2025 Café Delicia. Todos los derechos reservados.
+    </footer>
+    <script>
+        document.getElementById('newEmailForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const emailInput = document.getElementById('newEmailInput');
+            const submitBtn = document.getElementById('newSubmitBtn');
+            const email = emailInput.value.trim();
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Por favor, introduzca un correo electrónico válido.');
+                return;
+            }
+            submitBtn.textContent = '✔';
+            submitBtn.classList.add('submitted');
+            submitBtn.disabled = true;
+            try {
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 10000);
+                const response = await fetch('https://script.google.com/macros/s/AKfycbz_t3KHVcenQbZyg-kxG9QpftJ_CdumhV__AivyqLx9UYA4fUcVriov8lPynF3FHm1z/exec', {
+                    method: 'POST',
+                    body: JSON.stringify({ email: email, timestamp: new Date().toISOString() }),
+                    headers: { 'Content-Type': 'application/json' },
+                    mode: 'no-cors',
+                    signal: controller.signal
+                });
+                clearTimeout(timeoutId);
+                emailInput.value = '';
+            } catch (error) {
+                console.error('Error details:', error);
+                if (error.name !== 'AbortError') {
+                    submitBtn.textContent = 'Enviar';
+                    submitBtn.classList.remove('submitted');
+                    submitBtn.disabled = false;
+                }
+            }
         });
-
-        clearTimeout(timeoutId);
-
-        emailInput.value = '';
-      } catch (error) {
-        console.error('Error details:', error);
-        if (error.name !== 'AbortError') {
-          submitBtn.textContent = 'Subscribe';
-          submitBtn.classList.remove('submitted');
-          submitBtn.disabled = false;
-        }
-      }
-    });
-  </script>
-  <div class="copyright-box">
-    © 2025 Café Delicia. Todos los derechos reservados.
-  </div>
+    </script>
 </body>
 </html>
